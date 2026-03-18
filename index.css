@@ -1,7 +1,10 @@
+/* BASE */
 body{
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #0f0f0f; /* DARK BG */
+    color: white;
 }
 *{
     box-sizing: border-box;
@@ -11,35 +14,34 @@ body{
 .head{
     width: 100%;
     min-height: 60px;
-    background-color: #333;
+    background-color: #111; /* darker */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 10px;
+    border-bottom: 2px solid #ff6a00;
 }
 
 .head__right{
     display: flex;
     gap: 10px;
-    color: white;
-    flex-wrap: wrap; /* important */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
 .head__right__item{
     font-size: 16px;
-    border: 2px solid #f15b0a;
-    padding: 5px 10px;
-    border-radius: 10px;
+    border: 2px solid #ff6a00;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #fff;
     transition: all 0.3s ease;
 }
 
-.head__right__item:hover,
-.info:hover,
-.footer h2:hover{
-    color: #f15b0a;
+.head__right__item:hover{
+    background: #ff6a00;
+    color: #000;
     transform: scale(1.1);
-    cursor: pointer;   
 }
 
 /* HERO */
@@ -48,94 +50,112 @@ body{
     min-height: 300px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 20px;
 }
 
 .hello{
-    font-size: 18px;
-    color: #f1f1f1;
-    background-color: #f15b0a;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    border: 5px solid #333;
+    background: linear-gradient(135deg, #ff6a00, #ffb300); /* FIRE GRADIENT */
+    padding: 20px 30px;
+    border-radius: 12px;
+    border: 2px solid #ff6a00;
     text-align: center;
+    box-shadow: 0 0 20px rgba(255,106,0,0.5); /* glow */
 }
 
-/* CONTENT CARDS */
+.hello h1{
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.hello h2{
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+/* CONTENT */
 .body__content{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* KEY for responsiveness */
+    flex-wrap: wrap;
     gap: 20px;
-    padding: 1rem;
+    padding: 20px;
 }
 
 .one{
+    flex: 1 1 280px;
+    max-width: 320px;
     height: 200px;
-    width: 30%;
-    min-width: 250px; /* prevents too small cards */
-    background-color: #f15b0a;
+    background: #1a1a1a; /* DARK CARD */
+    border: 2px solid #ff6a00;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border-radius: 15px;
-    border: 3px solid #333;
-    transition: all 0.3s ease;
     font-size: 22px;
+    transition: 0.3s;
 }
 
+.one:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(255,106,0,0.6);
+}
+
+.one h2{
+    color: #ffb300; /* YELLOW TEXT */
+}
+
+/* BUTTON */
 .info{
     padding: 10px 20px;
     border: none;
-    background-color: #333;
-    color: white;
+    background: linear-gradient(135deg, #ff6a00, #ffb300);
+    color: black;
     font-size: 14px;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
-    border: 2px solid #333;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.info:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255,106,0,0.8);
 }
 
 /* FOOTER */
 .footer{
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 1rem;
+    padding: 20px;
 }
 
 .footer h2{
     font-size: 20px;
-    border: 3px solid #f15b0a;
-    padding: 0.8rem 1.2rem;
-    border-radius: 10px;
+    border: 2px solid #ff6a00;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #ffb300;
+    transition: 0.3s;
 }
 
-/* 📱 MOBILE */
-@media (max-width: 768px){
-    .one{
-        width: 80%;
-    }
-
-    .hello{
-        font-size: 16px;
-    }
-
-    .head__right__item{
-        font-size: 14px;
-    }
+.footer h2:hover{
+    background: #ff6a00;
+    color: black;
+    box-shadow: 0 0 10px rgba(255,106,0,0.8);
 }
 
-/* 📱 SMALL MOBILE */
-@media (max-width: 480px){
+/* MOBILE */
+@media (max-width: 600px){
     .one{
-        width: 100%;
+        flex: 1 1 100%;
     }
 
     .hello h1{
@@ -143,6 +163,11 @@ body{
     }
 
     .hello h2{
-        font-size: 16px;
+        font-size: 14px;
+    }
+
+    .head__right__item{
+        font-size: 14px;
+        padding: 5px;
     }
 }
