@@ -31,24 +31,107 @@
     <div class="body__content">
         <div class="one">
             <h2>SOLO</h2>
-            <button class="info">More Info</button>
+            <button class="info" onclick="showDetails('solo')">More Info</button>
         </div>  
         <div class="one">
             <h2>DUO</h2>
-            <button class="info">More Info</button>
+            <button class="info" onclick="showDetails('duo')">More Info</button>
         </div>
         <div class="one">
             <h2>SQUAD</h2>
-            <button class="info">More Info</button>
+            <button class="info" onclick="showDetails('squad')">More Info</button>
         </div>
+    </div>
+
+    <!-- DETAILS BOX -->
+    <div id="detailsBox" class="details hidden">
+        <button class="closeBtn" onclick="closeDetails()">X</button>
+        <h2 id="detailsTitle"></h2>
+        <p id="detailsText"></p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="registerBox" class="register hidden">
+        <button class="closeBtn" onclick="closeRegister()">X</button>
+        <h2>Register Tournament</h2>
+
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="text" id="uid" placeholder="Game UID">
+
+        <select id="mode">
+            <option value="">Select Mode</option>
+            <option value="Solo">Solo</option>
+            <option value="Duo">Duo</option>
+            <option value="Squad">Squad</option>
+        </select>
+
+        <button onclick="submitForm()">Submit</button>
     </div>
 </main>
 
 <footer>
     <div class="footer">
-        <h2>REGISTER NOW</h2>
+        <h2 onclick="openRegister()">REGISTER NOW</h2>
     </div>
 </footer>
+
+<script>
+const detailsBox = document.getElementById("detailsBox");
+const title = document.getElementById("detailsTitle");
+const text = document.getElementById("detailsText");
+const registerBox = document.getElementById("registerBox");
+
+// SHOW DETAILS
+function showDetails(type){
+    detailsBox.classList.remove("hidden");
+    registerBox.classList.add("hidden"); // hide register when showing details
+
+    if(type === "solo"){
+        title.innerText = "SOLO TOURNAMENT";
+        text.innerText = "Entry Fee: 20৳ | 1 Player | Prize: Per Kill 10৳ | Map: Bermuda | Time: will be announced";
+    }
+    else if(type === "duo"){
+        title.innerText = "DUO TOURNAMENT";
+        text.innerText = "Entry Fee: 50৳ | 2 Players | Prize: 200 Diamond | Map: Bermuda / Pugretory | Time: will be announced";
+    }
+    else if(type === "squad"){
+        title.innerText = "SQUAD TOURNAMENT";
+        text.innerText = "Entry Fee: 100৳ | 4 Players | Prize: 4 Weekly | Map: Bermuda / Pugretory / Kalahari | Time: will be announced";
+    }
+}
+
+// OPEN REGISTER FORM
+function openRegister(){
+    registerBox.classList.remove("hidden");
+    detailsBox.classList.add("hidden"); // hide details when showing register
+}
+
+// CLOSE FUNCTIONS
+function closeRegister(){
+    registerBox.classList.add("hidden");
+}
+
+function closeDetails(){
+    detailsBox.classList.add("hidden");
+}
+
+// SUBMIT FORM
+function submitForm(){
+    let name = document.getElementById("name").value;
+    let uid = document.getElementById("uid").value;
+    let mode = document.getElementById("mode").value;
+
+    if(name=="" || uid=="" || mode==""){
+        alert("Fill all fields!");
+        return;
+    }
+
+    let msg = `Name: ${name}%0AUID: ${uid}%0AMode: ${mode}`;
+    let phone = "8801976333372"; // replace with your number
+    window.open(`https://wa.me/${phone}?text=${msg}`);
+    alert("Redirecting to WhatsApp...");
+}
+</script>
 
 </body>
 </html>

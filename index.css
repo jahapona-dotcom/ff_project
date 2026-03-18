@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #0f0f0f; /* DARK BG */
+    background-color: #0f0f0f;
     color: white;
 }
 *{
@@ -14,7 +14,7 @@ body{
 .head{
     width: 100%;
     min-height: 60px;
-    background-color: #111; /* darker */
+    background-color: #111;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,12 +55,12 @@ body{
 }
 
 .hello{
-    background: linear-gradient(135deg, #ff6a00, #ffb300); /* FIRE GRADIENT */
+    background: linear-gradient(135deg, #ff6a00, #ffb300);
     padding: 20px 30px;
     border-radius: 12px;
     border: 2px solid #ff6a00;
     text-align: center;
-    box-shadow: 0 0 20px rgba(255,106,0,0.5); /* glow */
+    box-shadow: 0 0 20px rgba(255,106,0,0.5);
 }
 
 .hello h1{
@@ -89,7 +89,7 @@ body{
     flex: 1 1 280px;
     max-width: 320px;
     height: 200px;
-    background: #1a1a1a; /* DARK CARD */
+    background: #1a1a1a;
     border: 2px solid #ff6a00;
     display: flex;
     justify-content: center;
@@ -106,7 +106,7 @@ body{
 }
 
 .one h2{
-    color: #ffb300; /* YELLOW TEXT */
+    color: #ffb300;
 }
 
 /* BUTTON */
@@ -144,16 +144,103 @@ body{
     border-radius: 25px;
     color: #ffb300;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .footer h2:hover{
     background: #ff6a00;
     color: black;
     box-shadow: 0 0 10px rgba(255,106,0,0.8);
+    transition: all 0.4s ease;
+}
+
+/* DETAILS BOX */
+.details{
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #1a1a1a;
+    border: 2px solid #ff6a00;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255,106,0,0.5);
+    position: relative;
+}
+
+/* REGISTER FORM */
+.register{
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #111;
+    border: 2px solid #ff6a00;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.register input,
+.register select{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px #ff6a00;
+}
+
+.register button{
+    padding: 10px;
+    background: linear-gradient(135deg, #ff6a00, #ffb300);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.details,
+.register{
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CLOSE BUTTON */
+.closeBtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6a00;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.closeBtn:hover{
+    background: #ffb300;
 }
 
 /* MOBILE */
 @media (max-width: 600px){
+    .body__content{
+        padding: 10px;
+        gap: 15px;
+    }
     .one{
         flex: 1 1 100%;
     }
@@ -170,4 +257,8 @@ body{
         font-size: 14px;
         padding: 5px;
     }
+}
+
+.hidden{
+    display: none;
 }
