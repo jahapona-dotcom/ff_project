@@ -13,6 +13,7 @@
     <div class="logo">
       <h1>FF_TOURNAMENT</h1>
     </div>
+
     <nav class="nav__menu">
       <a href="#" class="nav__item">Home</a>
       <a href="#" class="nav__item">Tournaments</a>
@@ -20,57 +21,66 @@
       <a href="#" class="nav__item">Players</a>
       <a href="#" class="nav__item">Contact</a>
     </nav>
-    <div class="nav__toggle" onclick="toggleMenu()">&#9776;</div>
+
+    <div class="nav__toggle" onclick="toggleMenu()">☰</div>
   </div>
 </header>
 
 <main>
-    <div class="body__head">
-        <div class="hello">
-            <h1>FF_TOURNAMENT</h1>
-            <h2>Show Your Skills</h2>
-        </div>
+
+<!-- HERO -->
+<div class="body__head">
+    <div class="hello">
+        <h1>FF_TOURNAMENT</h1>
+        <h2>Show Your Skills</h2>
+    </div>
+</div>
+
+<!-- MODES -->
+<div class="body__content">
+    <div class="one">
+        <h2>SOLO</h2>
+        <button class="info" onclick="showDetails('solo')">More Info</button>
     </div>
 
-    <div class="body__content">
-        <div class="one">
-            <h2>SOLO</h2>
-            <button class="info" onclick="showDetails('solo')">More Info</button>
-        </div>  
-        <div class="one">
-            <h2>DUO</h2>
-            <button class="info" onclick="showDetails('duo')">More Info</button>
-        </div>
-        <div class="one">
-            <h2>SQUAD</h2>
-            <button class="info" onclick="showDetails('squad')">More Info</button>
-        </div>
+    <div class="one">
+        <h2>DUO</h2>
+        <button class="info" onclick="showDetails('duo')">More Info</button>
     </div>
 
-    <!-- DETAILS BOX -->
-    <div id="detailsBox" class="details hidden">
-        <button class="closeBtn" onclick="closeDetails()">X</button>
-        <h2 id="detailsTitle"></h2>
-        <p id="detailsText"></p>
+    <div class="one">
+        <h2>SQUAD</h2>
+        <button class="info" onclick="showDetails('squad')">More Info</button>
     </div>
+</div>
 
-    <!-- REGISTER FORM -->
-    <div id="registerBox" class="register hidden">
-        <button class="closeBtn" onclick="closeRegister()">X</button>
-        <h2>Register Tournament</h2>
+<!-- DETAILS -->
+<div id="detailsBox" class="details hidden">
+    <button class="closeBtn" onclick="closeDetails()">X</button>
+    <h2 id="detailsTitle"></h2>
+    <p id="detailsText"></p>
+</div>
 
-        <input type="text" id="name" placeholder="Your Name">
-        <input type="text" id="uid" placeholder="Game UID">
+<!-- REGISTER -->
+<div id="registerBox" class="register hidden">
+    <button class="closeBtn" onclick="closeRegister()">X</button>
+    <h2>Register Tournament</h2>
 
-        <select id="mode">
-            <option value="">Select Mode</option>
-            <option value="Solo">Solo</option>
-            <option value="Duo">Duo</option>
-            <option value="Squad">Squad</option>
-        </select>
+    <select id="mode" onchange="updateForm()">
+        <option value="">Select Mode</option>
+        <option value="Solo">Solo</option>
+        <option value="Duo">Duo</option>
+        <option value="Squad">Squad</option>
+    </select>
 
-        <button onclick="submitForm()">Submit</button>
-    </div>
+    <input type="text" id="name" placeholder="Your Name">
+
+    <!-- Dynamic Fields -->
+    <div id="extraFields"></div>
+
+    <button onclick="submitForm()">Submit</button>
+</div>
+
 </main>
 
 <footer>
@@ -80,65 +90,105 @@
 </footer>
 
 <script>
-const detailsBox = document.getElementById("detailsBox");
-const title = document.getElementById("detailsTitle");
-const text = document.getElementById("detailsText");
-const registerBox = document.getElementById("registerBox");
-
-function toggleMenu() {
-    const menu = document.querySelector('.nav__menu');
-    menu.classList.toggle('active');
+// MENU
+function toggleMenu(){
+    document.querySelector(".nav__menu").classList.toggle("active");
 }
 
-// SHOW DETAILS
+// DETAILS
 function showDetails(type){
-    detailsBox.classList.remove("hidden");
-    registerBox.classList.add("hidden"); // hide register when showing details
+    document.getElementById("detailsBox").classList.remove("hidden");
+    document.getElementById("registerBox").classList.add("hidden");
 
-    if(type === "solo"){
-        title.innerText = "SOLO TOURNAMENT";
-        text.innerText = "Entry Fee: 20৳ | 1 Player | Prize: Per Kill 10৳ | Map: Bermuda | Time: will be announced";
+    if(type==="solo"){
+        detailsTitle.innerText="SOLO TOURNAMENT";
+        detailsText.innerText="Entry Fee: 20৳ | 1 Player | Prize: Per Kill 10৳";
     }
-    else if(type === "duo"){
-        title.innerText = "DUO TOURNAMENT";
-        text.innerText = "Entry Fee: 50৳ | 2 Players | Prize: 200 Diamond | Map: Bermuda / Pugretory | Time: will be announced";
+    else if(type==="duo"){
+        detailsTitle.innerText="DUO TOURNAMENT";
+        detailsText.innerText="Entry Fee: 50৳ | 2 Players | Prize: 200 Diamond";
     }
-    else if(type === "squad"){
-        title.innerText = "SQUAD TOURNAMENT";
-        text.innerText = "Entry Fee: 100৳ | 4 Players | Prize: 4 Weekly | Map: Bermuda / Pugretory / Kalahari | Time: will be announced";
+    else{
+        detailsTitle.innerText="SQUAD TOURNAMENT";
+        detailsText.innerText="Entry Fee: 100৳ | 4 Players | Prize: Weekly";
     }
-}
-
-// OPEN REGISTER FORM
-function openRegister(){
-    registerBox.classList.remove("hidden");
-    detailsBox.classList.add("hidden"); // hide details when showing register
-}
-
-// CLOSE FUNCTIONS
-function closeRegister(){
-    registerBox.classList.add("hidden");
 }
 
 function closeDetails(){
-    detailsBox.classList.add("hidden");
+    document.getElementById("detailsBox").classList.add("hidden");
 }
 
-// SUBMIT FORM
-function submitForm(){
-    let name = document.getElementById("name").value;
-    let uid = document.getElementById("uid").value;
-    let mode = document.getElementById("mode").value;
+// REGISTER
+function openRegister(){
+    document.getElementById("registerBox").classList.remove("hidden");
+    document.getElementById("detailsBox").classList.add("hidden");
+}
 
-    if(name=="" || uid=="" || mode==""){
+function closeRegister(){
+    document.getElementById("registerBox").classList.add("hidden");
+}
+
+// DYNAMIC FORM
+function updateForm(){
+    let mode=document.getElementById("mode").value;
+    let box=document.getElementById("extraFields");
+    box.innerHTML="";
+
+    if(mode==="Solo"){
+        box.innerHTML=`<input type="text" id="uid1" placeholder="Player UID">`;
+    }
+    else if(mode==="Duo"){
+        box.innerHTML=`
+        <input type="text" id="team" placeholder="Team Name">
+        <input type="text" id="uid1" placeholder="Player 1 UID">
+        <input type="text" id="uid2" placeholder="Player 2 UID">`;
+    }
+    else if(mode==="Squad"){
+        box.innerHTML=`
+        <input type="text" id="team" placeholder="Team Name">
+        <input type="text" id="uid1" placeholder="Player 1 UID">
+        <input type="text" id="uid2" placeholder="Player 2 UID">
+        <input type="text" id="uid3" placeholder="Player 3 UID">
+        <input type="text" id="uid4" placeholder="Player 4 UID">`;
+    }
+}
+
+// SUBMIT
+function submitForm(){
+    let name=document.getElementById("name").value;
+    let mode=document.getElementById("mode").value;
+
+    if(name==""||mode==""){
         alert("Fill all fields!");
         return;
     }
 
-    let msg = `Name: ${name}%0AUID: ${uid}%0AMode: ${mode}`;
-    let phone = "8801976333372"; // replace with your number
-    window.open(`https://wa.me/${phone}?text=${msg}`);
-    alert("Redirecting to WhatsApp...");
+    let msg=`🔥 FF TOURNAMENT 🔥%0AName: ${name}%0AMode: ${mode}`;
+
+    if(mode==="Solo"){
+        let uid1=document.getElementById("uid1").value;
+        if(uid1==""){alert("Enter UID");return;}
+        msg+=`%0AUID: ${uid1}`;
+    }
+    else if(mode==="Duo"){
+        let team=document.getElementById("team").value;
+        let uid1=document.getElementById("uid1").value;
+        let uid2=document.getElementById("uid2").value;
+        if(team==""||uid1==""||uid2==""){alert("Fill all");return;}
+        msg+=`%0ATeam: ${team}%0AUID1: ${uid1}%0AUID2: ${uid2}`;
+    }
+    else{
+        let team=document.getElementById("team").value;
+        let uid1=document.getElementById("uid1").value;
+        let uid2=document.getElementById("uid2").value;
+        let uid3=document.getElementById("uid3").value;
+        let uid4=document.getElementById("uid4").value;
+        if(team==""||uid1==""||uid2==""||uid3==""||uid4==""){alert("Fill all");return;}
+        msg+=`%0ATeam: ${team}%0AUID1: ${uid1}%0AUID2: ${uid2}%0AUID3: ${uid3}%0AUID4: ${uid4}`;
+    }
+
+    alert("Click SEND on WhatsApp to complete registration");
+    window.open(`https://wa.me/8801976333372?text=${msg}`);
 }
 </script>
 
