@@ -9,15 +9,19 @@
 <body>
 
 <header>
-   <div class="head">
-        <div class="head__right">
-            <div class="head__right__item">Home</div>
-            <div class="head__right__item">Tournaments</div>
-            <div class="head__right__item">Teams</div>
-            <div class="head__right__item">Players</div>
-            <div class="head__right__item">Contact</div>
-        </div>
-   </div>
+  <div class="head">
+    <div class="logo">
+      <h1>FF_TOURNAMENT</h1>
+    </div>
+    <nav class="nav__menu">
+      <a href="#" class="nav__item">Home</a>
+      <a href="#" class="nav__item">Tournaments</a>
+      <a href="#" class="nav__item">Teams</a>
+      <a href="#" class="nav__item">Players</a>
+      <a href="#" class="nav__item">Contact</a>
+    </nav>
+    <div class="nav__toggle" onclick="toggleMenu()">&#9776;</div>
+  </div>
 </header>
 
 <main>
@@ -80,6 +84,11 @@ const detailsBox = document.getElementById("detailsBox");
 const title = document.getElementById("detailsTitle");
 const text = document.getElementById("detailsText");
 const registerBox = document.getElementById("registerBox");
+
+function toggleMenu() {
+    const menu = document.querySelector('.nav__menu');
+    menu.classList.toggle('active');
+}
 
 // SHOW DETAILS
 function showDetails(type){
