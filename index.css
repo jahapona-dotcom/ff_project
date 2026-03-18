@@ -6,60 +6,78 @@ body{
 *{
     box-sizing: border-box;
 }
+
+/* HEADER */
 .head{
     width: 100%;
-    height: 60px;
+    min-height: 60px;
     background-color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 0;
+    padding: 1rem;
 }
+
 .head__right{
     display: flex;
     gap: 10px;
     color: white;
-    transition: all 0.3s ease;
+    flex-wrap: wrap; /* important */
+    justify-content: center;
 }
+
 .head__right__item{
-    font-size: 18px;
+    font-size: 16px;
+    border: 2px solid #f15b0a;
+    padding: 5px 10px;
+    border-radius: 10px;
     transition: all 0.3s ease;
-     border: 2px solid #f15b0a;
-        padding: 5px 10px;
-        border-radius: 10px;
 }
-.head__right__item:hover,.info:hover,.footer h2:hover{
+
+.head__right__item:hover,
+.info:hover,
+.footer h2:hover{
     color: #f15b0a;
-    transform: scale(1.2);
+    transform: scale(1.1);
     cursor: pointer;   
 }
+
+/* HERO */
 .body__head{
     width: 100%;
-    height: 400px;
+    min-height: 300px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 2rem 1rem;
 }
+
 .hello{
-    font-size: 20px;
+    font-size: 18px;
     color: #f1f1f1;
     background-color: #f15b0a;
-    padding: 0.8rem 2.5rem;
+    padding: 1rem 2rem;
     border-radius: 10px;
     border: 5px solid #333;
-    transition: all 0.3s ease;
     text-align: center;
 }
+
+/* CONTENT CARDS */
 .body__content{
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap; /* KEY for responsiveness */
+    gap: 20px;
+    padding: 1rem;
 }
+
 .one{
     height: 200px;
     width: 30%;
+    min-width: 250px; /* prevents too small cards */
     background-color: #f15b0a;
     display: flex;
     justify-content: center;
@@ -68,32 +86,63 @@ body{
     border-radius: 15px;
     border: 3px solid #333;
     transition: all 0.3s ease;
-    font-size: 25px;;
+    font-size: 22px;
 }
+
 .info{
     padding: 10px 20px;
     border: none;
     background-color: #333;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid #333;
-    transition: all 0.3s ease;
 }
+
+/* FOOTER */
 .footer{
     width: 100%;
-    height: AUTO;
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 }
+
 .footer h2{
-    font-size: 22px;
-    color: black;
+    font-size: 20px;
     border: 3px solid #f15b0a;
     padding: 0.8rem 1.2rem;
     border-radius: 10px;
-    transition: all 0.3s ease;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px){
+    .one{
+        width: 80%;
+    }
+
+    .hello{
+        font-size: 16px;
+    }
+
+    .head__right__item{
+        font-size: 14px;
+    }
+}
+
+/* 📱 SMALL MOBILE */
+@media (max-width: 480px){
+    .one{
+        width: 100%;
+    }
+
+    .hello h1{
+        font-size: 22px;
+    }
+
+    .hello h2{
+        font-size: 16px;
+    }
 }
